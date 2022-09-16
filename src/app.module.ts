@@ -23,7 +23,6 @@ import { AeropuertoModule } from './aeropuerto/aeropuerto.module';
       entities: [
         AerolineaEntity,
         AeropuertoEntity,
-
       ],
       dropSchema: true,
       synchronize: true,
