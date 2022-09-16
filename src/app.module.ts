@@ -7,6 +7,7 @@ import { AerolineaEntity } from './aerolinea/aerolinea.entity';
 import { AerolineaModule } from './aerolinea/aerolinea.module';
 import { AeropuertoEntity } from './aeropuerto/aeropuerto.entity';
 import { AeropuertoModule } from './aeropuerto/aeropuerto.module';
+import { AerolineaAeropuertoModule } from './aerolinea-aeropuerto/aerolinea-aeropuerto.module';
 
 
 @Module({
@@ -28,6 +29,7 @@ import { AeropuertoModule } from './aeropuerto/aeropuerto.module';
       synchronize: true,
       keepConnectionAlive: true,
     }),
+    AerolineaAeropuertoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
