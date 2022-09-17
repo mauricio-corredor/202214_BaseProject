@@ -18,6 +18,6 @@ export class AerolineaDto {
 
     @IsUrl()
     @IsNotEmpty()
-    readonly paginaWeb: Url;
+    readonly paginaWeb: string;
     
 }
