@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "66848ea0-e59a-4fd1-8266-24fbcddd3962",
+		"name": "Aerolineas-Aeropuertoes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15421525"
+	},
+	"item": [
+		{
+			"name": "Adicionar un aeropuerto a una aerolinea gastronomica",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos/{{aeropuerto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"aerolineas",
+						"{{aerolinea_id}}",
+						"aeropuertos",
+						"{{aeropuerto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Adicionar un aeropuerto a una aerolinea gastronomica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aerolineas/1/aeropuertos/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aerolineas",
+								"1",
+								"aeropuertos",
+								"1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"1\",\n    \"nombre\": \"Aerolinea gastronomica Caribeña\",\n    \"descripcion\": \"La comida del Caribe es una de las más diversas en el mundo, gracias a la variedad de productos y a la influencia indígena, africana y europea, logrando una fusión de sabores que han conquistado el paladar de propios y extraños. En los destinos de playa, el menú se basa principalmente en los frutos de mar, una gran variedad de frutas, verduras, aromas de las mejores esencias, sabores, sensaciones y colores que hacen parte de cada uno de los platos ofrecidos en esta aerolinea\",\n    \"region\": \"Caribe\",\n    \"aeropuertos\":[\n        {\n            \"id\": \"1\",\n            \"nombre\": \"Cuba\",\n            \"continente\": \"America\",\n            \"subregion\" : \"Caribe\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Adicionar un aeropuerto invalido a una aerolinea gastronomica",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"aerolineas",
+						"{{aerolinea_id}}",
+						"aeropuertos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Adicionar un aeropuerto invalido a una aerolinea gastronomica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aerolineas/1/aeropuertos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aerolineas",
+								"1",
+								"aeropuertos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el aeropuerto con el ID proporcionado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los aeropuertos de una aerolinea gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of aeropuertos > ' + 0, function () {\r",
+							"    var data = pm.response.json()\r",
+							"    pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"aerolineas",
+						"{{aerolinea_id}}",
+						"aeropuertos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los aeropuertos de una aerolinea gastronomica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aerolineas/1/aeropuertos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aerolineas",
+								"1",
+								"aeropuertos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"1\",\n        \"nombre\": \"Cuba\",\n        \"continente\": \"America\",\n        \"subregion\": \"Caribe\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un aeropuerto de una aerolinea gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos/{{aeropuerto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"aerolineas",
+						"{{aerolinea_id}}",
+						"aeropuertos",
+						"{{aeropuerto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un aeropuerto de una aerolinea gastronomica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aerolineas/1/aeropuertos/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aerolineas",
+								"1",
+								"aeropuertos",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"1\",\n    \"nombre\": \"Cuba\",\n    \"continente\": \"America\",\n    \"subregion\": \"Caribe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un aeropuerto no asociado a una aerolinea gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El aeropuerto no se encuentra asociado a la aerolinea\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos/{{aeropuerto_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"aerolineas",
+						"{{aerolinea_id}}",
+						"aeropuertos",
+						"{{aeropuerto_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un aeropuerto no asociado a una aerolinea gastronomica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aerolineas/1/aeropuertos/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aerolineas",
+								"1",
+								"aeropuertos",
+								"2"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"El aeropuerto con el ID proporcionado no está asociado con la aerolinea gastronomica indicada\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un aeropuerto de una aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Air Japan\",\n    \"codigo\": \"AJP\",\n    \"pais\": \"Japon\",\n    \"ciudad\": \"Kyoto\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"aerolineas",
+						"{{aerolinea_id}}",
+						"aeropuertos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un aeropuerto de una aerolinea gastronomica",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n   {\n       \"id\": \"2\"\n   }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/aerolineas/1/aeropuertos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aerolineas",
+								"1",
+								"aeropuertos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"1\",\n    \"nombre\": \"Aerolinea gastronomica Caribeña\",\n    \"descripcion\": \"La comida del Caribe es una de las más diversas en el mundo, gracias a la variedad de productos y a la influencia indígena, africana y europea, logrando una fusión de sabores que han conquistado el paladar de propios y extraños. En los destinos de playa, el menú se basa principalmente en los frutos de mar, una gran variedad de frutas, verduras, aromas de las mejores esencias, sabores, sensaciones y colores que hacen parte de cada uno de los platos ofrecidos en esta aerolinea\",\n    \"region\": \"Caribe\",\n    \"aeropuertos\": [\n        {\n            \"id\": \"2\",\n            \"nombre\": \"Panama\",\n            \"continente\": \"America\",\n            \"subregion\": \"Centro America\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un aeropuerto invalido de una aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).to.eql(\"The aeropuerto with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Air Japan\",\n    \"codigo\": \"AJS\",\n    \"pais\": \"Japon\",\n    \"ciudad\": \"Tokio\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"aerolineas",
+						"{{aerolinea_id}}",
+						"aeropuertos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un aeropuerto invalido a una aerolinea gastronomica",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n   {\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\n   }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/aerolineas/1/aeropuertos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aerolineas",
+								"1",
+								"aeropuertos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el aeropuerto con el ID proporcionado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un aeropuerto de una aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos/{{aeropuerto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"aerolineas",
+						"{{aerolinea_id}}",
+						"aeropuertos",
+						"{{aeropuerto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un aeropuerto de una aerolinea gastronomica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aerolineas/1/aeropuertos/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aerolineas",
+								"1",
+								"aeropuertos",
+								"2"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Borrar un aeropuerto no asociado de una aerolinea gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The aeropuerto with the given id is not associated to the aerolinea\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos/{{aeropuerto_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"aerolineas",
+						"{{aerolinea_id}}",
+						"aeropuertos",
+						"{{aeropuerto_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un aeropuerto no asociado de una aerolinea gastronomica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos/{{aeropuerto_id_x}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"aerolineas",
+								"{{aerolinea_id}}",
+								"aeropuertos",
+								"{{aeropuerto_id_x}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"El aeropuerto con el ID proporcionado no está asociado con la aerolinea gastronomica indicada\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}
