@@ -109,7 +109,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"    var data = pm.response.json();\r",
-							"    pm.expect(data.message).to.eql(\"Ciudad must have at least 3 characters\");\r",
+							"    pm.expect(data.message).to.eql(\"The aerolinea must have at least 3 characters\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -121,7 +121,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"j\",\r\n    \"descripcion\": \"Avc\",\r\n    \"fechaFundada\": \"1905-10-20\",\r\n    \"paginaWeb\": \"www.aa.com\"\r\n }",
+					"raw": "{\r\n    \"nombre\": \"ab\",\r\n    \"descripcion\": \"Avc\",\r\n    \"fechaFundada\": \"1905-10-20\",\r\n    \"paginaWeb\": \"www.aa.com\"\r\n }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -146,7 +146,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"\",\r\n    \"descripcion\": \"Avc\",\r\n    \"fechaFundada\": \"1905-10-20\",\r\n    \"paginaWeb\": \"www.aa.com\"\r\n }",
+							"raw": "{\r\n    \"nombre\": \"jh\",\r\n    \"descripcion\": \"Avc\",\r\n    \"fechaFundada\": \"1905-10-20\",\r\n    \"paginaWeb\": \"www.aa.com\"\r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -197,7 +197,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 400,\n    \"message\": [\n        \"paginaWeb should not be empty\",\n        \"paginaWeb must be an URL address\"\n    ],\n    \"error\": \"Bad Request\"\n}"
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The aerolinea must have at least 3 characters\"\n}"
 				}
 			]
 		},
