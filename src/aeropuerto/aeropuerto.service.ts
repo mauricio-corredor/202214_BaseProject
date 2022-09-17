@@ -21,11 +21,14 @@ export class AeropuertoService {
   async findOne(id: string): Promise<AeropuertoEntity> {
     const aeropuerto: AeropuertoEntity = await this.aeropuertoRepository.findOne({where: {id}, relations: ["aerolineas"] });
     if (!aeropuerto)
-      throw new BusinessLogicException('El aeropuerto con el id suministraddo no fue encontrado', BusinessError.NOT_FOUND );
+      throw new BusinessLogicException('The aeropuerto with the given id was not found', BusinessError.NOT_FOUND );
     return aeropuerto;
   }
 
   async create(aeropuerto: AeropuertoEntity): Promise<AeropuertoEntity> {
+    const lenghtofCode= aeropuerto.codigo;
+    if (lenghtofCode.length!=3)
+      throw new BusinessLogicException("Codigo must have 3 characters", BusinessError.PRECONDITION_FAILED);
     return await this.aeropuertoRepository.save(aeropuerto);
   }
 
@@ -36,7 +39,7 @@ export class AeropuertoService {
       });
     if (!persisteAeropuerto)
       throw new BusinessLogicException(
-        'El aeropuerto con el id suministraddo no fue encontrado',
+        'The aeropuerto with the given id was not found',
         BusinessError.NOT_FOUND
       );
     return await this.aeropuertoRepository.save({
@@ -51,7 +54,7 @@ export class AeropuertoService {
     });
     if (!aeropuerto)
       throw new BusinessLogicException(
-        'El aeropuerto con el id suministraddo no fue encontrado',
+        'The aeropuerto with the given id was not found',
         BusinessError.NOT_FOUND
       );
     return await this.aeropuertoRepository.remove(aeropuerto);
