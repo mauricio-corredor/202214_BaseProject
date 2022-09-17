@@ -54,6 +54,24 @@
 		},
 		{
 			"name": "Adicionar un aeropuerto invalido a una aerolinea gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el Supermercado con el Id dado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -391,7 +409,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/aerolineas/{{aerolinea_id}}/aeropuertos/{{aeropuerto_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -399,7 +417,7 @@
 						"aerolineas",
 						"{{aerolinea_id}}",
 						"aeropuertos",
-						"00000000-0000-0000-0000-000000000000"
+						"{{aeropuerto_id}}"
 					]
 				}
 			},

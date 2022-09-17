@@ -26,14 +26,13 @@ export class AerolineaService {
   }
 
   async create(aerolinea: AerolineaEntity): Promise<AerolineaEntity> {
-    const lengthOfName = aerolinea.nombre
-    if (lengthOfName.length<3)
-    throw new BusinessLogicException("Ciudad must have at least 3 characters", BusinessError.PRECONDITION_FAILED);
+    const lengthName = aerolinea.nombre
+    if (lengthName.length<3)
+      throw new BusinessLogicException("The aerolinea must have at least 3 characters", BusinessError.PRECONDITION_FAILED);
     return await this.aerolineaRepository.save(aerolinea);
   }
 
   async update(id: string, aerolinea: AerolineaEntity): Promise<AerolineaEntity> {
-    console.log("este es id de la aerolinea pasado:  " + id);
     const persistedAerolinea: AerolineaEntity = await this.aerolineaRepository.findOne({ where: { id } });
     if (!persistedAerolinea)
       throw new BusinessLogicException("The aerolinea with the given id was not found", BusinessError.NOT_FOUND);

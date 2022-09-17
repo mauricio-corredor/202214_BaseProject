@@ -121,7 +121,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Air Japan\",\r\n    \"codigo\": \"AHA\",\r\n    \"pais\": \"Japon\",\r\n    \"ciudad\": \"Kyoto\"\r\n }",
+					"raw": "{\r\n    \"nombre\": \"Air Japan\",\r\n    \"codigo\": \"AH\",\r\n    \"pais\": \"Japon\",\r\n    \"ciudad\": \"Kyoto\"\r\n }",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -28,7 +28,7 @@ describe('AerolineaService', () => {
     aerolineaList = [];
     for(let i = 0; i < 5; i++){
         const aerolinea: AerolineaEntity = await repository.save({
-        nombre: faker.company.name(), 
+        nombre: faker.lorem.word(), 
         descripcion: faker.lorem.sentence(), 
         fechaFundada: faker.address.country(),
         paginaWeb: faker.internet.url()})
@@ -63,7 +63,7 @@ describe('AerolineaService', () => {
   it('create should return a new aerolinea', async () => {
     const aerolinea: AerolineaEntity = {
       id: "",
-      nombre: faker.company.name(), 
+      nombre: faker.lorem.word(5), 
       descripcion: faker.lorem.sentence(), 
       fechaFundada: faker.date.past().toString(),
       paginaWeb: faker.internet.url(),
