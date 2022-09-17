@@ -97,6 +97,7 @@ describe('AeropuertoService', () => {
   });
  
   it('update should throw an exception for an invalid aeropuerto', async () => {
+    
     let aeropuerto: AeropuertoEntity = aeropuertosList[0];
     aeropuerto = {
       ...aeropuerto, nombre: "New name", codigo: "CDM"
