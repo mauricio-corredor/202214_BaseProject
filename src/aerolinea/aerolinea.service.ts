@@ -26,6 +26,9 @@ export class AerolineaService {
   }
 
   async create(aerolinea: AerolineaEntity): Promise<AerolineaEntity> {
+    const lengthOfName = aerolinea.nombre
+    if (lengthOfName.length<3)
+    throw new BusinessLogicException("Ciudad must have at least 3 characters", BusinessError.PRECONDITION_FAILED);
     return await this.aerolineaRepository.save(aerolinea);
   }
 
