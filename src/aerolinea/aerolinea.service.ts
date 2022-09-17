@@ -26,16 +26,22 @@ export class AerolineaService {
   }
 
   async create(aerolinea: AerolineaEntity): Promise<AerolineaEntity> {
-    const lengthName = aerolinea.nombre
-    if (lengthName.length<3)
-      throw new BusinessLogicException("The aerolinea must have at least 3 characters", BusinessError.PRECONDITION_FAILED);
+    const date = Date.parse(aerolinea.fechaFundada)
+    
+    if (date> Date.now())
+      throw new BusinessLogicException("fechaFundada must be before today", BusinessError.PRECONDITION_FAILED);
     return await this.aerolineaRepository.save(aerolinea);
   }
 
   async update(id: string, aerolinea: AerolineaEntity): Promise<AerolineaEntity> {
     const persistedAerolinea: AerolineaEntity = await this.aerolineaRepository.findOne({ where: { id } });
+    
+    const date = Date.parse(aerolinea.fechaFundada)
     if (!persistedAerolinea)
       throw new BusinessLogicException("The aerolinea with the given id was not found", BusinessError.NOT_FOUND);
+    
+    if (date> Date.now())
+      throw new BusinessLogicException("fechaFundada must be before today", BusinessError.PRECONDITION_FAILED);
 
     return await this.aerolineaRepository.save({
       ...persistedAerolinea,
