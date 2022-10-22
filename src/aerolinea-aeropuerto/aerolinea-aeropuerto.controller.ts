@@ -12,29 +12,29 @@ export class AerolineaAeropuertoController {
     constructor(private readonly aerolineaAeropuertoService: AerolineaAeropuertoService){}
 
     @Post(':aerolineaId/aeropuertos/:aeropuertoId')
-    async addAeropuertoCultura(@Param('aerolineaId') aerolineaId: string, @Param('aeropuertoId') aeropuertoId: string){
+    async addAeropuertoAerolinea(@Param('aerolineaId') aerolineaId: string, @Param('aeropuertoId') aeropuertoId: string){
         return await this.aerolineaAeropuertoService.addAeropuertoAerolinea(aerolineaId, aeropuertoId);
     }
 
     @Get(':aerolineaId/aeropuertos/:aeropuertoId')
-    async findAeropuertoByCulturaIdAeropuertoId(@Param('aerolineaId') aerolineaId: string, @Param('aeropuertoId') aeropuertoId: string){
+    async findAeropuertoByAerolineaIdAeropuertoId(@Param('aerolineaId') aerolineaId: string, @Param('aeropuertoId') aeropuertoId: string){
         return await this.aerolineaAeropuertoService.findAeropuertoByAerolineaIdAeropuertoId(aerolineaId, aeropuertoId);
     }
 
     @Get(':aerolineaId/aeropuertos')
-    async findAeropuertosByCulturaId(@Param('aerolineaId') aerolineaId: string){
+    async findAeropuertosByAerolineaId(@Param('aerolineaId') aerolineaId: string){
         return await this.aerolineaAeropuertoService.findAeropuertosByAerolineaId(aerolineaId);
     }
 
     @Put(':aerolineaId/aeropuertos')
-    async associateAeropuertosCultura(@Body() aeropuertosDto: AeropuertoDto[], @Param('aerolineaId') aerolineaId: string){
+    async associateAeropuertosAerolinea(@Body() aeropuertosDto: AeropuertoDto[], @Param('aerolineaId') aerolineaId: string){
         const aeropuertos = plainToInstance(AeropuertoEntity, aeropuertosDto)
         return await this.aerolineaAeropuertoService.associateAeropuertosAerolinea(aerolineaId, aeropuertos);
     }
     
     @Delete(':aerolineaId/aeropuertos/:aeropuertoId')
     @HttpCode(204)
-    async deleteAeropuertoCultura(@Param('aerolineaId') aerolineaId: string, @Param('aeropuertoId') aeropuertoId: string){
+    async deleteAeropuertoAerolinea(@Param('aerolineaId') aerolineaId: string, @Param('aeropuertoId') aeropuertoId: string){
         return await this.aerolineaAeropuertoService.deleteAeropuertoAerolinea(aerolineaId, aeropuertoId);
     }
 }
