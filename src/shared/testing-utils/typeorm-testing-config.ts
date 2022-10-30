@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AerolineaEntity } from '../../aerolinea/Aerolinea.entity';
+import { AerolineaEntity } from '../../aerolinea/aerolinea.entity';
 import { AeropuertoEntity } from '../../aeropuerto/aeropuerto.entity';
 
 
